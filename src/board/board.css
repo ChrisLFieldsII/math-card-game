@@ -1,0 +1,42 @@
+#board {
+    background-color: lightgray;
+    border: 5px solid teal;
+    height: 100%;
+    width: 100%;
+}
+
+.player-icon {
+    height: 20%;
+    width: 10%;
+    background-color: orange;
+}
+
+.bottom-player {
+    float: right;
+}
+
+.row-border {
+    border: 1px solid black;
+    height: 25%;
+    width: 100%;
+}
+
+.to-bottom {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.rel-wrapper {
+    position: relative;
+}
+
+.card {
+    position: absolute;
+    top: 25%;
+    left: 35%;
+}
+
+.card-holder {
+    height: 100%;
+}

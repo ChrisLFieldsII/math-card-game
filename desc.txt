@@ -1,0 +1,13 @@
+- 8 cards each (numbers and symbols)
+    - can be changeable in future
+    - 104 cards total. 52 for each player at start
+- 5 cards in hand at a time
+- cards are:
+    - 1-9
+    - math symbols (+, -, *, /)
+- game directions:
+    - start with 5 cards in hand
+    - both players lay cards down in left to right order
+    - total calculated and round given to winner
+    - both players put cards in graveyard and draw 5 more
+

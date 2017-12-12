@@ -1,0 +1,13 @@
+.card {
+    width: 100px;
+    height: 100px;
+    background-color: rgb(255, 166, 0);
+    position: relative;
+}
+
+#value {
+    position: absolute;
+    top: 30%;
+    color: rgb(17, 2, 83);
+    font-size: 130%;
+}
