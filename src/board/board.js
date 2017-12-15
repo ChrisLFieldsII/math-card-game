@@ -50,21 +50,27 @@ class Board extends Component {
                 {/* start of top player */}
                 <div className="row row-border" id="topPlayerBackRow">
                     <div id="topPlayerIcon" className="col-lg-1 player-icon">Top Player</div>
+                    <div className="col-lg-2"><Card id="topCard1" className="card" value={this.state.topPlayerCardsOnBoard[0]} /></div>
+                    <div className="col-lg-2"><Card id="topCard2" className="card" value={this.state.topPlayerCardsOnBoard[1]} /></div>
+                    <div className="col-lg-2"><Card id="topCard3" className="card" value={this.state.topPlayerCardsOnBoard[2]} /></div>
+                    <div className="col-lg-2"><Card id="topCard4" className="card" value={this.state.topPlayerCardsOnBoard[3]} /></div>
+                    <div className="col-lg-2"><Card id="topCard5" className="card" value={this.state.topPlayerCardsOnBoard[4]} /></div>
                 </div>
                 <div className="row row-border" id="topPlayerFrontRow">
-                    <div className="col-lg-2 card-holder"><Card id="topCard1" className="card" value={this.state.topPlayerCardsOnBoard[0]} /></div>
-                    <div className="col-lg-2 card-holder"><Card id="topCard2" className="card" value={this.state.topPlayerCardsOnBoard[1]} /></div>
-                    <div className="col-lg-2 card-holder"><Card id="topCard3" className="card" value={this.state.topPlayerCardsOnBoard[2]} /></div>
-                    <div className="col-lg-2 card-holder"><Card id="topCard4" className="card" value={this.state.topPlayerCardsOnBoard[3]} /></div>
-                    <div className="col-lg-2 card-holder"><Card id="topCard5" className="card" value={this.state.topPlayerCardsOnBoard[4]} /></div>
+                    {/* working on drag-drop. throws error atm */}
+                    <div className="col-lg-2 card-holder" onDragOver={this.allowDrop} onDrop={this.drop}></div>
+                    <div className="col-lg-2 card-holder"></div>
+                    <div className="col-lg-2 card-holder"></div>
+                    <div className="col-lg-2 card-holder"></div>
+                    <div className="col-lg-2 card-holder"></div>
                 </div>
                 {/* start of bottom player */}
                 <div className="row row-border" id="bottomPlayerFrontRow">
-                    <div className="col-lg-2 card-holder rel-wrapper"><Card id="bottomCard1" className="card" value={this.state.bottomPlayerCardsOnBoard[0]} /></div>
-                    <div className="col-lg-2 card-holder rel-wrapper"><Card id="bottomCard2" className="card" value={this.state.bottomPlayerCardsOnBoard[1]} /></div>
-                    <div className="col-lg-2 card-holder rel-wrapper"><Card id="bottomCard3" className="card" value={this.state.bottomPlayerCardsOnBoard[2]} /></div>
-                    <div className="col-lg-2 card-holder rel-wrapper"><Card id="bottomCard4" className="card" value={this.state.bottomPlayerCardsOnBoard[3]} /></div>
-                    <div className="col-lg-2 card-holder rel-wrapper"><Card id="bottomCard5" className="card" value={this.state.bottomPlayerCardsOnBoard[4]} /></div>
+                    <div className="col-lg-2 card-holder"><Card id="bottomCard1" className="card" value={this.state.bottomPlayerCardsOnBoard[0]} /></div>
+                    <div className="col-lg-2 card-holder"><Card id="bottomCard2" className="card" value={this.state.bottomPlayerCardsOnBoard[1]} /></div>
+                    <div className="col-lg-2 card-holder"><Card id="bottomCard3" className="card" value={this.state.bottomPlayerCardsOnBoard[2]} /></div>
+                    <div className="col-lg-2 card-holder"><Card id="bottomCard4" className="card" value={this.state.bottomPlayerCardsOnBoard[3]} /></div>
+                    <div className="col-lg-2 card-holder"><Card id="bottomCard5" className="card" value={this.state.bottomPlayerCardsOnBoard[4]} /></div>
                 </div>
                 <div className="row row-border rel-wrapper" id="bottomPlayerBackRow">
                     <div className="col-lg-11"></div>
@@ -78,6 +84,16 @@ class Board extends Component {
     startGame() {
         for (let x=0; x<5; x++) this.state.deck.shuffleArray(this.state.deck.deck);
         let half = this.state.deck.deckSize / 2;
+    }
+
+    allowDrop(event) {
+        event.preventDefault();
+    }
+
+    drop(event) {
+        event.preventDefault();
+        let card = event.dataTransfer.getData('text');
+        event.target.appendChild(document.getElementById(card));
     }
 }
 
