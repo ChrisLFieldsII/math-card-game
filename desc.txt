@@ -6,8 +6,11 @@
     - 1-9
     - math symbols (+, -, *, /)
 - game directions:
-    - start with 5 cards in hand
+    - at start of every turn, game gives each player 5 cards: 3 numbers and 2 symbols chosen at random. User 
+        has to click and drag these cards to come up with one number. Highest number wins.
     - both players lay cards down in left to right order
     - total calculated and round given to winner
     - both players put cards in graveyard and draw 5 more
+    - no symbols allowed at first and last slots
+    - if there are 2 consecutive numbers, subtract second number from total
 

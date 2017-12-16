@@ -43,42 +43,82 @@ class Board extends Component {
         console.log('bottom starting deck',this.state.bottomPlayerDeck)
     }
 
-    // <Card value={this.state.deck.deck[0]} />
     render() {
         return (
             <div className="container-fluid" id="board">
                 {/* start of top player */}
                 <div className="row row-border" id="topPlayerBackRow">
-                    <div id="topPlayerIcon" className="col-lg-1 player-icon">Top Player</div>
-                    <div className="col-lg-2"><Card id="topCard1" className="card" value={this.state.topPlayerCardsOnBoard[0]} /></div>
-                    <div className="col-lg-2"><Card id="topCard2" className="card" value={this.state.topPlayerCardsOnBoard[1]} /></div>
-                    <div className="col-lg-2"><Card id="topCard3" className="card" value={this.state.topPlayerCardsOnBoard[2]} /></div>
-                    <div className="col-lg-2"><Card id="topCard4" className="card" value={this.state.topPlayerCardsOnBoard[3]} /></div>
-                    <div className="col-lg-2"><Card id="topCard5" className="card" value={this.state.topPlayerCardsOnBoard[4]} /></div>
+                    <div id="topPlayerIcon" className="col-lg-1 player-icon" onClick={() => this.playGame(this.state.topPlayerCardsOnBoard,'top')}>Top Player</div>
+                    {/* tpbch = top player back card holder */}
+                    <div className="col-lg-2">
+                        <div id="tpbch1" className="card-holder" onDragOver={this.allowDrop} onDrop={this.drop}><Card id="topCard1" className="from-top-left" value={this.state.topPlayerCardsOnBoard[0]} /></div>
+                    </div>
+                    <div className="col-lg-2">
+                        <div id="tpbch2" className="card-holder" onDragOver={this.allowDrop} onDrop={this.drop}><Card id="topCard2" className="from-top-left" value={this.state.topPlayerCardsOnBoard[1]} /></div>
+                    </div>
+                    <div className="col-lg-2">
+                        <div id="tpbch3" className="card-holder" onDragOver={this.allowDrop} onDrop={this.drop}><Card id="topCard3" className="from-top-left" value={this.state.topPlayerCardsOnBoard[2]} /></div>
+                    </div>
+                    <div className="col-lg-2">
+                        <div id="tpbch4" className="card-holder" onDragOver={this.allowDrop} onDrop={this.drop}><Card id="topCard4" className="from-top-left" value={this.state.topPlayerCardsOnBoard[3]} /></div>
+                    </div>
+                    <div className="col-lg-2">
+                        <div id="tpbch5" className="card-holder" onDragOver={this.allowDrop} onDrop={this.drop}><Card id="topCard5" className="from-top-left" value={this.state.topPlayerCardsOnBoard[4]} /></div>
+                    </div>
                 </div>
                 <div className="row row-border" id="topPlayerFrontRow">
-                    {/* working on drag-drop. throws error atm. tpch = top player card holder */}
-                    <div id="tpch1" className="col-lg-2 card-holder" onDragOver={this.allowDrop} onDrop={this.drop}></div>
-                    <div id="tpch2" className="col-lg-2 card-holder" onDragOver={this.allowDrop} onDrop={this.drop}></div>
-                    <div id="tpch3" className="col-lg-2 card-holder" onDragOver={this.allowDrop} onDrop={this.drop}></div>
-                    <div id="tpch4" className="col-lg-2 card-holder" onDragOver={this.allowDrop} onDrop={this.drop}></div>
-                    <div id="tpch5" className="col-lg-2 card-holder" onDragOver={this.allowDrop} onDrop={this.drop}></div>
+                    {/* tpfch(Y) = top player front card holder. Y is indicator that symbol should not go in card-holder */}
+                    <div className="col-lg-2">
+                        <div id="tpfch1Y" className="card-holder" onDragOver={this.allowDrop} onDrop={this.drop}></div>
+                    </div>
+                    <div className="col-lg-2">
+                        <div id="tpfch2" className="card-holder" onDragOver={this.allowDrop} onDrop={this.drop}></div>
+                    </div>
+                    <div className="col-lg-2">
+                        <div id="tpfch3" className="card-holder" onDragOver={this.allowDrop} onDrop={this.drop}></div>
+                    </div>
+                    <div className="col-lg-2">
+                        <div id="tpfch4" className="card-holder" onDragOver={this.allowDrop} onDrop={this.drop}></div>
+                    </div>
+                    <div className="col-lg-2">
+                        <div id="tpfch5Y" className="card-holder" onDragOver={this.allowDrop} onDrop={this.drop}></div>
+                    </div>
                 </div>
-                {/* start of bottom player */}
+                {/* start of bottom player. bpfch(Y) = back player front card holder. Y is indicator that symbol should not go in card-holder */}
                 <div className="row row-border" id="bottomPlayerFrontRow">
-                    <div id="bpch1" className="col-lg-2 card-holder" onDragOver={this.allowDrop} onDrop={this.drop}></div>
-                    <div id="bpch2" className="col-lg-2 card-holder" onDragOver={this.allowDrop} onDrop={this.drop}></div>
-                    <div id="bpch3" className="col-lg-2 card-holder" onDragOver={this.allowDrop} onDrop={this.drop}></div>
-                    <div id="bpch4" className="col-lg-2 card-holder" onDragOver={this.allowDrop} onDrop={this.drop}></div>
-                    <div id="bpch5" className="col-lg-2 card-holder" onDragOver={this.allowDrop} onDrop={this.drop}></div>
+                    <div className="col-lg-2">
+                        <div id="bpfch1Y" className="card-holder" onDragOver={this.allowDrop} onDrop={this.drop}></div>
+                    </div>
+                    <div className="col-lg-2">
+                        <div id="bpfch2" className="card-holder" onDragOver={this.allowDrop} onDrop={this.drop}></div>
+                    </div>
+                    <div className="col-lg-2">
+                        <div id="bpfch3" className="card-holder" onDragOver={this.allowDrop} onDrop={this.drop}></div>
+                    </div>
+                    <div className="col-lg-2">
+                        <div id="bpfch4" className="card-holder" onDragOver={this.allowDrop} onDrop={this.drop}></div>
+                    </div>
+                    <div className="col-lg-2">
+                        <div id="bpfch5Y" className="card-holder" onDragOver={this.allowDrop} onDrop={this.drop}></div>
+                    </div>
                 </div>
                 <div className="row row-border rel-wrapper" id="bottomPlayerBackRow">
-                    <div className="col-lg-2"><Card id="bottomCard1" className="card" value={this.state.bottomPlayerCardsOnBoard[0]} /></div>
-                    <div className="col-lg-2"><Card id="bottomCard2" className="card" value={this.state.bottomPlayerCardsOnBoard[1]} /></div>
-                    <div className="col-lg-2"><Card id="bottomCard3" className="card" value={this.state.bottomPlayerCardsOnBoard[2]} /></div>
-                    <div className="col-lg-2"><Card id="bottomCard4" className="card" value={this.state.bottomPlayerCardsOnBoard[3]} /></div>
-                    <div className="col-lg-2"><Card id="bottomCard5" className="card" value={this.state.bottomPlayerCardsOnBoard[4]} /></div>
-                    <div id="bottomPlayerIcon" className="col-lg-1 player-icon to-bottom">Bottom Player</div>
+                    <div className="col-lg-2">
+                        <div id="bpbch1" className="card-holder" onDragOver={this.allowDrop} onDrop={this.drop}><Card id="bottomCard1" className="from-top-left" value={this.state.bottomPlayerCardsOnBoard[0]} /></div>
+                    </div>
+                    <div className="col-lg-2">
+                        <div id="bpbch2" className="card-holder" onDragOver={this.allowDrop} onDrop={this.drop}><Card id="bottomCard2" className="from-top-left" value={this.state.bottomPlayerCardsOnBoard[1]} /></div>
+                    </div>
+                    <div className="col-lg-2">
+                        <div id="bpbch3" className="card-holder" onDragOver={this.allowDrop} onDrop={this.drop}><Card id="bottomCard3" className="from-top-left" value={this.state.bottomPlayerCardsOnBoard[2]} /></div>
+                    </div>
+                    <div className="col-lg-2">
+                        <div id="bpbch4" className="card-holder" onDragOver={this.allowDrop} onDrop={this.drop}><Card id="bottomCard4" className="from-top-left" value={this.state.bottomPlayerCardsOnBoard[3]} /></div>
+                    </div>
+                    <div className="col-lg-2">
+                        <div id="bpbch5" className="card-holder" onDragOver={this.allowDrop} onDrop={this.drop}><Card id="bottomCard5" className="from-top-left" value={this.state.bottomPlayerCardsOnBoard[4]} /></div>
+                    </div>
+                    <div id="bottomPlayerIcon" className="col-lg-1 player-icon to-bottom" onClick={() => this.playGame(this.state.bottomPlayerCardsOnBoard,'bottom')}>Bottom Player</div>
                 </div>
             </div>
         );
@@ -90,17 +130,40 @@ class Board extends Component {
         let half = this.state.deck.deckSize / 2;
     }
 
+    drag(event) {
+        console.log('drag started')
+        event.dataTransfer.setData('text', event.target.id);
+        console.log('data transfer obj:',event.dataTransfer)
+    }
+
     allowDrop(event) {
+        console.info('allowDrop event occurred');
         event.preventDefault();
     }
 
     drop(event) {
+        console.info('drop event occurred');
         event.preventDefault();
-        let card = event.dataTransfer.getData('text');
-        let targetId = event.target.id;
+        let cardId = event.dataTransfer.getData('text');
+        let targetId = event.target.id; // target of drop
         // if ensures player can only put cards on their row
-        if ((card.startsWith('b') && targetId.startsWith('b')) || (card.startsWith('t') && targetId.startsWith('t')))
-            event.target.appendChild(document.getElementById(card));
+        if ((cardId.startsWith('b') && targetId.startsWith('b')) || (cardId.startsWith('t') && targetId.startsWith('t')))
+            event.target.appendChild(document.getElementById(cardId));
+    }
+
+    /**
+     * 
+     * @param {Object[]} cardsOnBoardArr Represents players 5 cards on board
+     * @param {string} player String thats either 'top' or 'bottom' to set state
+     * 
+     */
+    playGame(cardsOnBoardArr, player) {
+        console.log(`${player} has these cards on board: ${JSON.stringify(cardsOnBoardArr)}`);
+        cardsOnBoardArr.forEach(element => {
+            if (isNaN(element)) {
+
+            }
+        });
     }
 }
 
