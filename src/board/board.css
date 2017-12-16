@@ -42,7 +42,8 @@
     width: 105px;
     border: 3px solid black;
     position: absolute;
-    top: 25%;
+    top: 50px;
     left: 35%;
     box-shadow: 10px 10px 5px grey;
 }
+

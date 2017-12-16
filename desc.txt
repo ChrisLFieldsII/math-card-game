@@ -1,6 +1,3 @@
-- 8 cards each (numbers and symbols)
-    - can be changeable in future
-    - 104 cards total. 52 for each player at start
 - 5 cards in hand at a time
 - cards are:
     - 1-9
@@ -12,5 +9,13 @@
     - total calculated and round given to winner
     - both players put cards in graveyard and draw 5 more
     - no symbols allowed at first and last slots
-    - if there are 2 consecutive numbers, subtract second number from total
+    - card holder id naming convention:
+        - [(T/B)(fr/br)(Y/N)(#)]
+        - [(Top/Bottom)(front row/back row)(symbol allowed? Yes/No)(card number: 1-5)]
+        - Ex: TfrY1
+            - Top player, front row, card is a symbol, first card in hand
+
+To DO Later:
+    - implement colored card holders that indicate which card can go into which cardholder
+    - figure out what causes error on drag-drop
 

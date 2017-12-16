@@ -11,9 +11,7 @@ class Card extends Component {
     }
 
     drag(event) {
-        console.log('drag started')
         event.dataTransfer.setData('text', event.target.id);
-        console.log('data transfer obj:',event.dataTransfer)
     }
 }
 
