@@ -19,3 +19,9 @@ To DO Later:
     - implement colored card holders that indicate which card can go into which cardholder
     - figure out what causes error on drag-drop
 
+Bugs:
+    - can illegally place number on top of symbol in front row
+
+Left Off On:
+    - clicking player icon throws error
+

@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import Card from '../card/card';
 import Deck from '../deck/deck';
 import Player from '../player/player';
+import Menu from '../menu/menu';
 import './board.css';
+import '../util/performCalc';
+import performCalc from '../util/performCalc';
 
 /** State:
  *  - 
@@ -32,9 +35,10 @@ class Board extends Component {
     render() {
         return (
             <div className="container-fluid" id="board">
+                <Menu id="menu" />
                 {/* start of top player. id convention in desc.txt */}
                 <div className="row row-border" id="topPlayerBackRow">
-                    <div id="topPlayerIcon" className="col-lg-1 player-icon" onClick={() => this.getTopsTotal()}>Top Player</div>
+                    <div id="topPlayerIcon" className="col-lg-1 player-icon" onClick={() => this.getTopsTotal()}>Top Player<br/>(Click to finalize turn)</div>
                     <div className="col-lg-2">
                         <div id="TbrY1" className="card-holder" onDragOver={this.allowDrop} onDrop={this.drop}><Card id="TopCard1Y" className="from-top-left" value={this.state.topPlayer.hand[0]} /></div>
                     </div>
@@ -102,7 +106,7 @@ class Board extends Component {
                     <div className="col-lg-2">
                         <div id="BbrY5" className="card-holder" onDragOver={this.allowDrop} onDrop={this.drop}><Card id="BottomCard5" className="from-top-left" value={this.state.bottomPlayer.hand[4]} /></div>
                     </div>
-                    <div id="bottomPlayerIcon" className="col-lg-1 player-icon to-bottom" onClick={() => this.getBottomsTotal()}>Bottom Player</div>
+                    <div id="bottomPlayerIcon" className="col-lg-1 player-icon to-bottom" onClick={() => this.getBottomsTotal()}>Bottom Player<br/>(Click to finalize turn)</div>
                 </div>
             </div>
         );
@@ -131,6 +135,7 @@ class Board extends Component {
         else alert('Invalid move\nYou can only make a move within your 2 rows.');
     }
 
+    /** Gets top player's total and sets their [completedTurn] state to true when their icon is clicked **/
     getTopsTotal() {
         let num1 = Number(document.getElementById('TfrN1').innerText);
         let num2 = Number(document.getElementById('TfrN3').innerText);
@@ -142,11 +147,12 @@ class Board extends Component {
         total = this.performCalc(total,num3,sym2);
         // figure out how to set state...
         this.setState({
-            topPlayer: this.state.topPlayer.completedTurn = true
+            topPlayer: !this.state.topPlayer.completedTurn,
         });
         console.log('top total: ',total);
     }
 
+    /** Gets bottom player's total and sets their [completedTurn] state to true when their icon is clicked */
     getBottomsTotal() {
         let num1 = Number(document.getElementById('BfrN1').innerText);
         let num2 = Number(document.getElementById('BfrN3').innerText);
@@ -157,24 +163,17 @@ class Board extends Component {
         total += this.performCalc(num1,num2,sym1);
         total = this.performCalc(total,num3,sym2);
         this.setState({
-            bottomPlayer: this.state.bottomPlayer.completedTurn = true
+            bottomPlayer: !this.state.bottomPlayer.completedTurn,
         });
         console.log('bottom total: ',total);
     }
 
     performCalc(x, y, sym) {
-        switch (sym) {
-            case '+':
-                return x + y;
-            case '-':
-                return x - y;
-            case '*':
-                return x * y;
-            case '/':
-                return x / y;
-            default:
-                return;
-        }
+        performCalc(x, y, sym);
+    }
+
+    roundOver() {
+
     }
 }
 

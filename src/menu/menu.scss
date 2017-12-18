@@ -1,0 +1,80 @@
+// vars
+$barWidth:35px;
+$borderColor:#800033;
+
+@mixin burger-bar($color) {
+    background-color: $color;
+    width: $barWidth;
+    height: 5px;
+    margin: 6px 0px;
+    border-radius: 12px;
+}
+
+.orange-bar {
+    @include burger-bar(orange);
+}
+
+.teal-bar {
+    @include burger-bar(teal);
+}
+
+.green-bar {
+    @include burger-bar(green);
+}
+
+#menu {
+    width: 800px;
+    height: 600px;
+    background-color: whitesmoke;
+    display: none;
+    z-index: 1;    
+    position: absolute;
+    left: 5%;
+    border-left: 15px solid $borderColor;
+    color: orange;
+    &:hover {
+        cursor: grab;
+    }
+}
+
+#burger-bar {
+    width: $barWidth;
+    display: inline-block;
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+#title {
+    border-bottom: 3px solid $borderColor;
+    margin: 0 0 1%;
+}
+
+#playersContainer {
+    height: 88%;
+    margin: 5px;
+    display: flex;
+    flex-direction: row;
+}
+
+.player {
+    height: 97%;
+    width: 47%;
+    border: 3px outset $borderColor;
+    margin: 1%;
+}
+
+#menuNotification {
+    display: inline-block;
+    margin-left: 6px;
+    position: absolute;
+    bottom: 5px;
+}
+
+.rel-wrapper {
+    position: relative;
+}
+
+.player-title {
+    border-bottom: 3px solid $borderColor;
+}
