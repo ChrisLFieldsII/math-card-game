@@ -8,7 +8,7 @@
     cursor: grab;
 }
 
-#value {
+.value {
     position: absolute;
     top: 30%;
     color: rgb(17, 2, 83);

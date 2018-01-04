@@ -5,7 +5,7 @@ class Card extends Component {
     render() {
         return (
             <div className="card" draggable="true" onDragStart={this.drag} id={this.props.id} ref={input => this.card = input}>
-                <span id="value">{this.props.value}</span>
+                <span className="value">{this.props.value}</span>
             </div>
         );
     }
