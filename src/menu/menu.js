@@ -5,7 +5,7 @@ import Draggable from 'react-draggable';
 /** The burger bar controls whether the menu shows or not.
  *  When the menu is showing, it displays each players: round w/l count,
  *  highest score
- *  
+ *
  */
 class Menu extends Component {
     openMenu = 'Open Menu';

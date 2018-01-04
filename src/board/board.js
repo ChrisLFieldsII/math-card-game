@@ -8,18 +8,20 @@ import '../util/performCalc';
 import performCalc from '../util/performCalc';
 
 /** State:
- *  - 
+ *  -
  */
 class Board extends Component {
     deck = new Deck();
 
-    constructor(props) {        
+    constructor(props) {
         super(props);
         // set up player references and initial hands
         const topPlayer = new Player('top');
         topPlayer.hand = this.deck.dealHand();
+        console.log('top player hand: ',topPlayer.hand);
         const bottomPlayer = new Player('bottom');
         bottomPlayer.hand = this.deck.dealHand();
+        console.log('bottom player hand: ',bottomPlayer.hand);
         // set state
         this.state = {
             topPlayer: topPlayer,
@@ -106,7 +108,7 @@ class Board extends Component {
                     <div className="col-lg-2">
                         <div id="BbrY5" className="card-holder" onDragOver={this.allowDrop} onDrop={this.drop}><Card id="BottomCard5" className="from-top-left" value={this.state.bottomPlayer.hand[4]} /></div>
                     </div>
-                    <div id="bottomPlayerIcon" className="col-lg-1 player-icon to-bottom" onClick={() => this.getBottomsTotal()}>Bottom Player<br/>(Click to finalize turn)</div>
+                    <div id="bottomPlayerIcon" className="col-lg-1 player-icon to-bottom" onClick={() =>this.getBottomsTotal()}>Bottom Player<br/>(Click to finalize turn)</div>
                 </div>
             </div>
         );
@@ -126,7 +128,7 @@ class Board extends Component {
         let targetId = event.target.id; // target of drop
         // if ensures player can only put cards on their row
         if ((cardId.startsWith('B') && targetId.startsWith('B')) || (cardId.startsWith('T') && targetId.startsWith('T')))
-            // card ends with 'Y' if it reps a symbol. 
+            // card ends with 'Y' if it reps a symbol.
             if ((cardId.endsWith('Y') && targetId.charAt(3)==='Y') || (!(cardId.endsWith('Y')) && (!(targetId.charAt(3)==='Y'))))
                 event.target.appendChild(document.getElementById(cardId));
             else if (targetId.includes('br'))
@@ -137,11 +139,12 @@ class Board extends Component {
 
     /** Gets top player's total and sets their [completedTurn] state to true when their icon is clicked **/
     getTopsTotal() {
+        {/* change to use state */}
+        let sym1 = document.getElementById('TfrY2').innerText;
+        let sym2 = document.getElementById('TfrY4').innerText;
         let num1 = Number(document.getElementById('TfrN1').innerText);
         let num2 = Number(document.getElementById('TfrN3').innerText);
         let num3 = Number(document.getElementById('TfrN5').innerText);
-        let sym1 = document.getElementById('TfrY2').innerText;
-        let sym2 = document.getElementById('TfrY4').innerText;
         let total = 0;
         total += this.performCalc(num1,num2,sym1);
         total = this.performCalc(total,num3,sym2);
