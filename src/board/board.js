@@ -6,6 +6,7 @@ import Menu from '../menu/menu';
 import './board.css';
 import '../util/performCalc';
 import performCalc from '../util/performCalc';
+import roundNumber from '../util/roundNumber';
 
 /** State:
  *  -
@@ -152,12 +153,14 @@ class Board extends Component {
         let total = 0
         total += performCalc(num1, num2, sym1)
         total = performCalc(total, num3, sym2)
+        roundNumber(total)
         console.log('top total: ', total);
-        //changing multiple properties of one object with setState react
+        let topPlayerCopy = { ...this.state.topPlayer }
+        topPlayerCopy.completedTurn = true
+        if (total > topPlayerCopy.highScore) topPlayerCopy.highScore = total
         this.setState({
-            topPlayer: !this.state.topPlayer.completedTurn,
+            topPlayer: topPlayerCopy
         });
-
     }
 
     /** FIX!!! - Gets bottom player's total and sets their [completedTurn] state to true when their icon is clicked */
