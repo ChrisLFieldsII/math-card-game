@@ -1,6 +1,9 @@
-/** Rounds number to 2 decimal places. */
+/** Rounds number to 2 decimal places.
+ *  Currently has faulty logic but w/e
+*/
 export default function roundNumber(num) {
     let numStr = num.toString()
+    if (!numStr.includes('.')) return num
     let decimalPos = numStr.indexOf('.')
     let stringToRound = numStr.slice(0, decimalPos+4)
     console.log('string to round: ',stringToRound)

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Card from '../card/card';
 import Deck from '../deck/deck';
-import Player from '../player/player';
+import Player from '../player/player.js';
 import Menu from '../menu/menu';
 import './board.css';
 import '../util/performCalc';
@@ -36,6 +36,15 @@ class Board extends Component {
     }
 
     render() {
+        let top = this.state.topPlayer
+        let bot = this.state.bottomPlayer
+        
+        // find way to check if player completed turn
+        if (top.completedTurn) {
+            alert('top player completed turn')
+        }
+        //else if (top.completedTurn ||)
+
         return (
             <div className="container-fluid" id="board">
                 <Menu id="menu" />
@@ -145,38 +154,46 @@ class Board extends Component {
 
     /** Gets top player's total and sets their [completedTurn] state to true when their icon is clicked */
     getTopsTotal() {
-        let num1 = this.tch1.firstChild.firstChild.innerText
+        let num1 = Number(this.tch1.firstChild.firstChild.innerText)
         let sym1 = this.tch2.firstChild.firstChild.innerText
-        let num2 = this.tch3.firstChild.firstChild.innerText
+        let num2 = Number(this.tch3.firstChild.firstChild.innerText)
         let sym2 = this.tch4.firstChild.firstChild.innerText
-        let num3 = this.tch5.firstChild.firstChild.innerText
+        let num3 = Number(this.tch5.firstChild.firstChild.innerText)
         let total = 0
         total += performCalc(num1, num2, sym1)
+        //console.log('first perform calc:', total)
         total = performCalc(total, num3, sym2)
-        roundNumber(total)
+        //console.log('second perform calc:', total)
+        total = roundNumber(total)
         console.log('top total: ', total);
         let topPlayerCopy = { ...this.state.topPlayer }
         topPlayerCopy.completedTurn = true
+        topPlayerCopy.currentScore = total
         if (total > topPlayerCopy.highScore) topPlayerCopy.highScore = total
         this.setState({
             topPlayer: topPlayerCopy
         });
     }
 
-    /** FIX!!! - Gets bottom player's total and sets their [completedTurn] state to true when their icon is clicked */
+    /** Gets bottom player's total and sets their [completedTurn] state to true when their icon is clicked */
     getBottomsTotal() {
-        let num1 = Number(document.getElementById('BfrN1').innerText);
-        let num2 = Number(document.getElementById('BfrN3').innerText);
-        let num3 = Number(document.getElementById('BfrN5').innerText);
-        let sym1 = document.getElementById('BfrY2').innerText;
-        let sym2 = document.getElementById('BfrY4').innerText;
-        let total = 0;
-        total += this.performCalc(num1, num2, sym1);
-        total = this.performCalc(total, num3, sym2);
-        this.setState({
-            bottomPlayer: !this.state.bottomPlayer.completedTurn,
-        });
+        let num1 = Number(this.bch1.firstChild.firstChild.innerText)
+        let sym1 = this.bch2.firstChild.firstChild.innerText
+        let num2 = Number(this.bch3.firstChild.firstChild.innerText)
+        let sym2 = this.bch4.firstChild.firstChild.innerText
+        let num3 = Number(this.bch5.firstChild.firstChild.innerText)
+        let total = 0
+        total += performCalc(num1, num2, sym1)
+        total = performCalc(total, num3, sym2)
+        total = roundNumber(total)
         console.log('bottom total: ', total);
+        let botPlayerCopy = { ...this.state.bottomPlayer }
+        botPlayerCopy.completedTurn = true
+        botPlayerCopy.currentScore = total
+        if (total > botPlayerCopy.highScore) botPlayerCopy.highScore = total
+        this.setState({
+            bottomPlayer: botPlayerCopy
+        });
     }
 
     roundOver() {

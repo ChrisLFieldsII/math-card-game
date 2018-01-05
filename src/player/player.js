@@ -5,5 +5,6 @@ export default class Player {
         this.completedTurn = false;
         this.wins = 0;
         this.highScore = 0;
+        this.currentScore = 0;
     }
 }
