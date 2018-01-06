@@ -4,6 +4,8 @@ export default class Player {
     public completedTurn:boolean;
     public wins:number;
     public highScore:number;
+    public currentScore:number;
+    public roundsArray:number[];
 
     constructor(name:string) {
         this.name = name;
@@ -11,5 +13,7 @@ export default class Player {
         this.completedTurn = false;
         this.wins = 0;
         this.highScore = 0;
+        this.currentScore = 0;
+        this.roundsArray = [];
     }
 }

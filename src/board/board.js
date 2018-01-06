@@ -40,17 +40,20 @@ class Board extends Component {
         let bot = this.state.bottomPlayer
         
         // find way to check if player completed turn
-        if (top.completedTurn) {
-            alert('top player completed turn')
+        if (top.completedTurn && bot.completedTurn) {
+            alert('round over')
+
+            // at end re-enable player icons
+            this.enableIcon(this.topIcon)
+            this.enableIcon(this.botIcon)
         }
-        //else if (top.completedTurn ||)
 
         return (
             <div className="container-fluid" id="board">
-                <Menu id="menu" />
+                <Menu id="menu" topRoundsArray={} botRoundsArray={} />
                 {/* start of top player. id convention in desc.txt */}
                 <div className="row row-border" id="topPlayerBackRow">
-                    <div id="topPlayerIcon" className="col-lg-1 player-icon" onClick={() => this.getTopsTotal()}>Top Player<br />(Click to finalize turn)</div>
+                    <button id="topPlayerIcon" ref={input => this.topIcon = input} className="col-lg-1 player-icon" type="button" onClick={() => this.getTopsTotal()}>Top Player<br />(Click to finalize turn)</button>
                     <div className="col-lg-2">
                         {/* tc1 = top card 1; tch1 = top card holder 1. MIGHT REMOVE CARD REFS */}
                         <div id="TbrY1" className="card-holder" onDragOver={this.allowDrop} onDrop={this.drop}><Card id="TopCard1Y" ref={input => this.tc1 = input} className="from-top-left" value={this.state.topPlayer.hand[0]} /></div>
@@ -119,7 +122,7 @@ class Board extends Component {
                     <div className="col-lg-2">
                         <div id="BbrY5" className="card-holder" onDragOver={this.allowDrop} onDrop={this.drop}><Card id="BottomCard5" ref={input => this.bc5 = input} className="from-top-left" value={this.state.bottomPlayer.hand[4]} /></div>
                     </div>
-                    <div id="bottomPlayerIcon" className="col-lg-1 player-icon to-bottom" onClick={() => this.getBottomsTotal()}>Bottom Player<br />(Click to finalize turn)</div>
+                    <button id="bottomPlayerIcon" ref={input => this.botIcon = input} className="col-lg-1 player-icon to-bottom" type="button" onClick={() => this.getBottomsTotal()}>Bottom Player<br />(Click to finalize turn)</button>
                 </div>
             </div>
         );
@@ -169,10 +172,12 @@ class Board extends Component {
         let topPlayerCopy = { ...this.state.topPlayer }
         topPlayerCopy.completedTurn = true
         topPlayerCopy.currentScore = total
+        topPlayerCopy.roundsArray.push(total)
         if (total > topPlayerCopy.highScore) topPlayerCopy.highScore = total
         this.setState({
             topPlayer: topPlayerCopy
         });
+        this.disableIcon(this.topIcon)              
     }
 
     /** Gets bottom player's total and sets their [completedTurn] state to true when their icon is clicked */
@@ -190,14 +195,24 @@ class Board extends Component {
         let botPlayerCopy = { ...this.state.bottomPlayer }
         botPlayerCopy.completedTurn = true
         botPlayerCopy.currentScore = total
+        botPlayerCopy.roundsArray.push(total)
         if (total > botPlayerCopy.highScore) botPlayerCopy.highScore = total
         this.setState({
             bottomPlayer: botPlayerCopy
         });
+        this.disableIcon(this.botIcon)      
     }
 
-    roundOver() {
+    disableIcon(icon) {
+        icon.disabled = true
+        icon.style.backgroundColor = 'lightgrey'
+        icon.onhover = icon.style.cursor = 'not-allowed'
+    }
 
+    enableIcon(icon) {
+        icon.disabled = false
+        icon.style.backgroundColor = 'orange'
+        icon.onhover = icon.style.cursor = 'pointer'
     }
 }
 

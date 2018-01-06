@@ -32,6 +32,7 @@ $borderColor:#800033;
     left: 5%;
     border-left: 15px solid $borderColor;
     color: orange;
+    box-shadow: 10px 10px 5px grey;
     &:hover {
         cursor: grab;
     }

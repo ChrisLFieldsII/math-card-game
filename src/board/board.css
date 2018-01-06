@@ -7,9 +7,10 @@
 }
 
 .player-icon {
-    height: 35%;
+    height: 40%;
     width: 10%;
     background-color: orange;
+    border: 5px outset black;
 }
 .player-icon:hover {
     cursor: pointer;

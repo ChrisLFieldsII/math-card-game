@@ -2,7 +2,7 @@
  *  Currently has faulty logic but w/e
 */
 export default function roundNumber(num) {
-    let numStr = num.toString()
+    let numStr = num.toString().concat('0000') // concat 0s in case of numbers like 2.5 which would cause NaN
     if (!numStr.includes('.')) return num
     let decimalPos = numStr.indexOf('.')
     let stringToRound = numStr.slice(0, decimalPos+4)

@@ -28,7 +28,8 @@
   position: absolute;
   left: 5%;
   border-left: 15px solid #800033;
-  color: orange; }
+  color: orange;
+  box-shadow: 10px 10px 5px grey; }
   #menu:hover {
     cursor: grab; }
 
