@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './menu.css';
 import Draggable from 'react-draggable';
+import MenuList from './menuList/menuList.jsx'
 
 /** The burger bar controls whether the menu shows or not.
  *  When the menu is showing, it displays each players: round w/l count,
@@ -30,10 +31,12 @@ class Menu extends Component {
                             {/* Start of top players container */}
                             <div id="topPlayer" className="player">
                                 <h3 className="player-title"><strong>Top Player</strong></h3>
+                                <MenuList arr={this.props.topRoundsArray}/>
                             </div>
                             {/* Start of bottom players container */}
                             <div id="bottomPlayer" className="player">
                                 <h3 className="player-title"><strong>Bottom Player</strong></h3>
+                                <MenuList arr={this.props.botRoundsArray} />
                             </div>
                         </div>
                     </div>

@@ -1,4 +1,3 @@
-"use strict";
 exports.__esModule = true;
 var Player = /** @class */ (function () {
     function Player(name) {

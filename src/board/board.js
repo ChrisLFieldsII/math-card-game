@@ -50,7 +50,7 @@ class Board extends Component {
 
         return (
             <div className="container-fluid" id="board">
-                <Menu id="menu" topRoundsArray={} botRoundsArray={} />
+                <Menu id="menu" topRoundsArray={this.state.topPlayer.roundsArray} botRoundsArray={this.state.bottomPlayer.roundsArray} />
                 {/* start of top player. id convention in desc.txt */}
                 <div className="row row-border" id="topPlayerBackRow">
                     <button id="topPlayerIcon" ref={input => this.topIcon = input} className="col-lg-1 player-icon" type="button" onClick={() => this.getTopsTotal()}>Top Player<br />(Click to finalize turn)</button>

@@ -1,0 +1,13 @@
+ul {
+  list-style-type: none;
+  padding-left: 0; }
+
+li {
+  width: 100%;
+  background: linear-gradient(to right, rgba(128, 0, 51, 0), #800033);
+  text-align: left;
+  padding-left: 10px;
+  color: teal;
+  font-size: 1.5em; }
+
+/*# sourceMappingURL=menuList.css.map */

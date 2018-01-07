@@ -1,6 +1,7 @@
 // vars
 $barWidth:35px;
 $borderColor:#800033;
+$textColor:teal;
 
 @mixin burger-bar($color) {
     background-color: $color;
@@ -31,7 +32,7 @@ $borderColor:#800033;
     position: absolute;
     left: 5%;
     border-left: 15px solid $borderColor;
-    color: orange;
+    color: $textColor;
     box-shadow: 10px 10px 5px grey;
     &:hover {
         cursor: grab;
